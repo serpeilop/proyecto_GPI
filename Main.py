@@ -32,7 +32,7 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
-'''
+
 proyecto.addTarea(Tarea("A", 2))
 proyecto.addTarea(Tarea("B", 3))
 proyecto.addTarea(Tarea("C", 4))
@@ -55,18 +55,21 @@ proyecto.getTareaInicio().setSucesora(proyecto.getTareas()[0])
 proyecto.getTareaInicio().setSucesora(proyecto.getTareas()[3])
 
 
-proyecto.getRecursos().append(Recurso('Analista',2))
-proyecto.getRecursos().append(Recurso('Programador',3))
+proyecto.getRecursos().append(Recurso('Analista',5))
 
-
-proyecto.getTareas()[0].addRecurso(proyecto.getRecursos()[0], 1)
-proyecto.getTareas()[1].addRecurso(proyecto.getRecursos()[0], 1)
-proyecto.getTareas()[2].addRecurso(proyecto.getRecursos()[1], 3)
+proyecto.getTareas()[0].addRecurso(proyecto.getRecursos()[0], 5)
+#proyecto.getTareas()[0].addRecurso(proyecto.getRecursos()[1], 0)
+proyecto.getTareas()[1].addRecurso(proyecto.getRecursos()[0], 5)
+#proyecto.getTareas()[1].addRecurso(proyecto.getRecursos()[1], 1)
+proyecto.getTareas()[2].addRecurso(proyecto.getRecursos()[0], 1)
+#proyecto.getTareas()[2].addRecurso(proyecto.getRecursos()[1], 3)
 proyecto.getTareas()[3].addRecurso(proyecto.getRecursos()[0], 1)
+#proyecto.getTareas()[3].addRecurso(proyecto.getRecursos()[1], 0)
+
 
 caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
-'''
+
 #-----------------------------
 
 

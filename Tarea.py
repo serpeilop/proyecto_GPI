@@ -88,7 +88,10 @@ class Tarea:
 	   return self.recursos
 
     def getNecesidadesRecurso(self,recurso):
-        return self.recursos[recurso]
+        if recurso in self.recursos:
+            return self.recursos[recurso]
+        else:
+            return 0
 
     def getIsSecuenciada(self):
         return self.isSecuenciada

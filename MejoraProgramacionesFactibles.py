@@ -17,6 +17,7 @@ class MejoraProgramacionesFactibles:
 				fin = nuevoFin
 			else:
 				break
+				
 		Gantt(self.frameMain,self.proyecto)
 
 	def aplicarRetraso(self):
