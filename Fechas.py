@@ -16,11 +16,7 @@ class Fechas:
 		fecha = date(int(ano),int(mes),int(dia))
 		self.festivos.append(fecha)
 		
-       		tabla = Tabla(ventana_fechas, len(self.festivos)+1,1,30)
-       		tabla.set(0,0,"Fechas festivas: ")
-       		for i in self.festivos:
-       			tabla.set(self.festivos.index(i)+1,0,i)
-               	tabla.grid(column=8, row =0, rowspan=20, sticky=N)
+       		self.mostrarFechasFestivas(ventana_fechas)
 		
 		
 	def setFechas(self, ventana_fechas):
@@ -49,15 +45,18 @@ class Fechas:
 		Entry(ventana_fechas,width=4,textvariable=anof).grid(row=3, column=5)
 		Button(ventana_fechas, text="Anadir", command=lambda: self.anadirFestivo(diaf.get(),mesf.get(),anof.get(),ventana_fechas), width=10).grid(row=3, column=6)
 		
+		self.mostrarFechasFestivas(ventana_fechas)
+       		
 		
-       		tabla = Tabla(ventana_fechas, len(self.festivos)+1,1,20)
+	def getFechaInicio(self):
+		return self.fechaInicio
+		
+	def mostrarFechasFestivas(self, ventana_fechas):
+       		tabla = Tabla(ventana_fechas, len(self.festivos)+1,1,40)
        		tabla.set(0,0,"Fechas festivas: ")
        		for i in self.festivos:
        			tabla.set(self.festivos.index(i)+1,0,i)
                	tabla.grid(column=8, row =0, rowspan=20, sticky=N)
-		
-	def getFechaInicio(self):
-		return self.fechaInicio
 			
 		
 		
