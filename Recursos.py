@@ -27,17 +27,14 @@ class Recursos:
 		menu_recurso.config(width=18)
 		menu_recurso.grid(column=0, row= 7)
 		
-	def asignarRecurso(self,rec, tar , cant, tareas, frameMain, proyecto, frameHistograma):
+	def asignarRecurso(self,rec, tar , cant, tareas, proyecto, frameHistograma):
 		
 		tareas[tareas.index(str(tar))].addRecurso(self.recursos[self.recursos.index(str(rec))],int(cant))
 		
-		#ACTUALIZA MAIN
-		
-		proyecto.mostrarInformacion(frameMain)
 		Histograma(frameHistograma, proyecto)
 
 		
-	def setRecursos(self, frameRecursos,frameMain, proyecto,tareas):
+	def setRecursos(self, frameRecursos, proyecto,tareas):
 		
 
 		notebook = Notebook(frameRecursos, width=630, height=500)
@@ -98,7 +95,7 @@ class Recursos:
 		Label(frameAsignar, text="Cantidad:").grid(row=10)
 		Entry(frameAsignar,textvariable=cant).grid(row=11)
 		
-		Button(frameAsignar, text='Asignar', command=lambda: self.asignarRecurso(var_recurso.get(),var_tarea.get(),cant.get(),tareas, frameMain, proyecto, frameHistograma)).grid(row=12)
+		Button(frameAsignar, text='Asignar', command=lambda: self.asignarRecurso(var_recurso.get(),var_tarea.get(),cant.get(),tareas, proyecto, frameHistograma)).grid(row=12)
 		
 		###########
 

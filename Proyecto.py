@@ -40,8 +40,8 @@ class Proyecto:
 	def getRecursos(self):
 		return self.recursosProyecto.getRecursos()
 
-	def setRecursos(self,frameRecursos, frameMain, proyecto):
-		self.recursosProyecto.setRecursos(frameRecursos,frameMain,proyecto, self.tareas)
+	def setRecursos(self,frameRecursos, proyecto):
+		self.recursosProyecto.setRecursos(frameRecursos,proyecto, self.tareas)
 
 	# Metodos para Recursos Limitados Serie
 	'''
@@ -75,21 +75,17 @@ class Proyecto:
 		return self.tareaInicio
 		
 	def mostrarInformacion(self, frameMain):
-		tabla = Tabla(frameMain, len(self.tareas)+1,6)
+		tabla = Tabla(frameMain, len(self.tareas)+1,5)
 		tabla.set(0,0,"Nombre")
 		tabla.set(0,1,"Duracion")
 		tabla.set(0,2,"Antecesoras")
 		tabla.set(0,3,"Fecha Inicio")
 		tabla.set(0,4,"Fecha Fin")
-		tabla.set(0,5,"Recursos")
 		for i in self.tareas:
 			tabla.set(self.tareas.index(i)+1,0,i.getNombre())
 			tabla.set(self.tareas.index(i)+1,1,i.getDuracion())
 			tabla.set(self.tareas.index(i)+1,2,i.getAntecesoras())
 			tabla.set(self.tareas.index(i)+1,3,i.getEarlyStart())
 			tabla.set(self.tareas.index(i)+1,4,i.getEarlyStart()+i.getDuracion())
-			if len(i.getRecursos())>0:
-				tabla.set(self.tareas.index(i)+1,5,i.getRecursos())
-			else:	
-				tabla.set(self.tareas.index(i)+1,5,"Sin recursos")
+
 	        tabla.grid(column=1, row =0, rowspan=10, sticky=N)

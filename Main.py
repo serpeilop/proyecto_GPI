@@ -98,7 +98,7 @@ def introducirTarea():
 		proyecto.getTareaInicio().setSucesora(aux)         
         proyecto.addTarea(aux)
 
-	proyecto.setRecursos(frameRecursos, frameMain, proyecto)
+	proyecto.setRecursos(frameRecursos, proyecto)
 	
 	proyecto.mostrarInformacion(frameMain)
 	
@@ -149,6 +149,6 @@ Button(frameMain, text="Flexibilidad", command=flexibilidad, width=17).grid()
 proyecto.mostrarInformacion(frameMain)
 
 proyecto.setFechas(frameFechas)
-proyecto.setRecursos(frameRecursos, frameMain, proyecto)
+proyecto.setRecursos(frameRecursos, proyecto)
 
 frame.mainloop()         
