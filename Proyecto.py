@@ -87,7 +87,7 @@ class Proyecto:
 		return self.tareaInicio
 		
 	def mostrarInformacion(self, frameMain):
-		tabla = Tabla(frameMain, len(self.tareas)+1,5)
+		tabla = Tabla(frameMain, len(self.tareas)+1,5,15)
 		tabla.set(0,0,"Nombre")
 		tabla.set(0,1,"Duracion")
 		tabla.set(0,2,"Antecesoras")
@@ -97,7 +97,7 @@ class Proyecto:
 			tabla.set(self.tareas.index(i)+1,0,i.getNombre())
 			tabla.set(self.tareas.index(i)+1,1,i.getDuracion())
 			tabla.set(self.tareas.index(i)+1,2,i.getAntecesoras())
-			tabla.set(self.tareas.index(i)+1,3,i.getEarlyStart())
-			tabla.set(self.tareas.index(i)+1,4,i.getEarlyStart()+i.getDuracion())
+			tabla.set(self.tareas.index(i)+1,3,self.fechasProyecto.getLaborables()[i.getEarlyStart()].strftime('%d-%b-%Y'))
+			tabla.set(self.tareas.index(i)+1,4,self.fechasProyecto.getLaborables()[i.getEarlyStart()+i.getDuracion()].strftime('%d-%b-%Y'))
 
 	        tabla.grid(column=1, row =0, rowspan=10, sticky=N)

@@ -7,9 +7,9 @@ from CaminoCritico import *
 from NivelacionRecursos import *
 from Gantt import *
 from MejoraProgramacionesFactibles import *
-from ttk import *
 from Flexibilidad import *
 import tkMessageBox
+from ttk import *
 
 frame = Tk()
 #Style().configure("TButton", padding=6, relief="flat", background="#ccc")
@@ -32,6 +32,7 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
+'''
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988)
 
 proyecto.addTarea(Tarea("A", 2))
@@ -73,21 +74,21 @@ caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto)
-
+'''
 #-----------------------------
 
 
-Label(frameMain, text="Nombre: ").grid()
+Label(frameMain, text="Nombre: ").grid(row=1)
 nom = StringVar()
-Entry(frameMain, textvariable=nom).grid()
+Entry(frameMain, textvariable=nom).grid(row=2)
 
-Label(frameMain, text="Duracion: ").grid()
+Label(frameMain, text="Duracion: ").grid(row=3)
 dur = StringVar()
-Entry(frameMain, textvariable=dur).grid()
+Entry(frameMain, textvariable=dur).grid(row=4)
 
-Label(frameMain, text="Antecesoras: ").grid()
+Label(frameMain, text="Antecesoras: ").grid(row=5)
 ant = StringVar()
-Entry(frameMain, textvariable=ant).grid()
+Entry(frameMain, textvariable=ant).grid(row=6)
 
 
 def introducirTarea():
@@ -110,14 +111,12 @@ def introducirTarea():
 			     
 	        proyecto.addTarea(aux)
 		
-		proyecto.fixLaborables()
-		
 		proyecto.setRecursos(frameRecursos, proyecto)
-		
-		proyecto.mostrarInformacion(frameMain)
-		
+
 		caminoCritico = CaminoCritico(proyecto)
 		caminoCritico.calculoCaminoCritico()
+		proyecto.fixLaborables()
+		proyecto.mostrarInformacion(frameMain)
 		Gantt(frameMain,proyecto)
                 
 def calcularRL():
@@ -154,13 +153,13 @@ def nivelacionRecursos():
 	nivelacionRecursos = NivelacionRecursos(proyecto)
 	nivelacionRecursos.mostrarNivelacion()
 
-Button(frameMain, text="Introducir", command=introducirTarea, width=17).grid()
-Label(frameMain, text=" ").grid()
-Label(frameMain, text="Opciones: ").grid()
-Button(frameMain, text="Nivelacion de Recursos", command=nivelacionRecursos, width=17).grid()
-Button(frameMain, text="Recursos Limitados", command=calcularRL, width=17).grid()
-Button(frameMain, text="Mejora Progr. Factibles", command=mejoraPF, width=17).grid()
-Button(frameMain, text="Flexibilidad", command=flexibilidad, width=17).grid()
+Button(frameMain, text="Introducir", command=introducirTarea, width=17).grid(row=7)
+Label(frameMain, text=" ").grid(row=8)
+Label(frameMain, text="Opciones: ").grid(row=9)
+Button(frameMain, text="Nivelacion de Recursos", command=nivelacionRecursos, width=17).grid(row=10)
+Button(frameMain, text="Recursos Limitados", command=calcularRL, width=17).grid(row=11)
+Button(frameMain, text="Mejora Progr. Factibles", command=mejoraPF, width=17).grid(row=12)
+Button(frameMain, text="Flexibilidad", command=flexibilidad, width=17).grid(row=13)
 
 proyecto.mostrarInformacion(frameMain)
 
