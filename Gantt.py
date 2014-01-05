@@ -8,13 +8,13 @@ class Gantt:
 	def __init__(self, frame, proyecto):
 
 		tareas = proyecto.getTareas()
-		duracion = proyecto.getTareaFinal().getEarlyStart()
+		duracion = proyecto.getDuracion()
 
 		n = len(tareas)
 		
 		#TAMANYO
 		altura=20
-		ancho=30
+		ancho=40
 
 		w = Canvas(frame, width=80+ancho*duracion, height=80+altura*n)
 		w.grid(column=1, row=13,columnspan=6 , sticky=W)
@@ -24,7 +24,7 @@ class Gantt:
 		
 		for j in range(duracion+1):
 			w.create_line(40+ancho*j,40+altura*n,40+ancho*j,50+altura*n)
-			w.create_text(40+ancho*j,60+altura*n,text=str(j))
+			w.create_text(40+ancho*j,60+altura*n,text=proyecto.getLaborables()[j].strftime('%d/%b'), font=("Purisa",10))
 
 		for i in tareas:
 			if i.getHolgura()==0:

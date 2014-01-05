@@ -6,18 +6,14 @@ from ttk import *
 class Fechas:
 
 	festivos =[]
+	laborables =[]
 	fechaInicio = None
+	duracion = 0
 
 	def cambiarFechaInicio(self, dia, mes , ano):
 		fechaInicio = date(int(ano),int(mes),int(dia))
-		self.fechaInicio = fechaInicio	
-		
-	def anadirFestivo(self, dia, mes , ano, ventana_fechas):
-		fecha = date(int(ano),int(mes),int(dia))
-		self.festivos.append(fecha)
-		
-       		self.mostrarFechasFestivas(ventana_fechas)
-		
+		self.fechaInicio = fechaInicio
+		self.fixLaborables()
 		
 	def setFechas(self, ventana_fechas):
 		
@@ -43,10 +39,35 @@ class Fechas:
 		Entry(ventana_fechas,width=2,textvariable=mesf).grid(row=3, column=3)
 		Label(ventana_fechas, text="Ano:").grid(row=3, column=4)
 		Entry(ventana_fechas,width=4,textvariable=anof).grid(row=3, column=5)
-		Button(ventana_fechas, text="Anadir", command=lambda: self.anadirFestivo(diaf.get(),mesf.get(),anof.get(),ventana_fechas), width=10).grid(row=3, column=6)
+		Button(ventana_fechas, text="Anadir", command=lambda: self.addFestivo(diaf.get(),mesf.get(),anof.get(),ventana_fechas), width=10).grid(row=3, column=6)
 		
 		self.mostrarFechasFestivas(ventana_fechas)
-       		
+       	
+	
+	
+	def setDuracion(self, duracion):
+		self.duracion = duracion
+	
+	def getDuracion(self):
+		return self.duracion
+		
+	def addFestivo(self, dia, mes , ano, ventana_fechas):
+		fecha = date(int(ano),int(mes),int(dia))
+		self.festivos.append(fecha)
+		
+       		self.mostrarFechasFestivas(ventana_fechas)
+	
+	def fixLaborables(self):
+		self.laborables = []
+		for i in range(self.duracion):
+			self.laborables.append(self.fechaInicio+timedelta(days=i))
+		self.laborables.append(self.fechaInicio+timedelta(days=len(self.laborables)+1))
+	
+	def getLaborables(self):
+		return self.laborables
+		
+	def addLaborable(self,other):
+		self.laborables.append(other)
 		
 	def getFechaInicio(self):
 		return self.fechaInicio

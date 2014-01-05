@@ -32,6 +32,7 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
+proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988)
 
 proyecto.addTarea(Tarea("A", 2))
 proyecto.addTarea(Tarea("B", 3))
@@ -70,6 +71,9 @@ proyecto.getTareas()[3].addRecurso(proyecto.getRecursos()[0], 1)
 caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
 
+proyecto.fixLaborables()
+Gantt(frameMain,proyecto)
+
 #-----------------------------
 
 
@@ -85,29 +89,36 @@ Label(frameMain, text="Antecesoras: ").grid()
 ant = StringVar()
 Entry(frameMain, textvariable=ant).grid()
 
-def introducirTarea():
-        aux = Tarea(nom.get(), int(dur.get()))  
-        if ant.get()!='':
-		for j in ant.get().split(","):
-			for i in proyecto.getTareas():
-                        	if i.getNombre()==j:
-                                	aux.setAntecesora(i)
-                               	 	i.setSucesora(aux)
-					if(i.getEarlyStart()+i.getDuracion()>aux.getEarlyStart()):
-						aux.setEarlyStart(i.getEarlyStart()+i.getDuracion())
-	else:
-		aux.setEarlyStart(0)
-		aux.setAntecesora(proyecto.getTareaInicio())
-		proyecto.getTareaInicio().setSucesora(aux)         
-        proyecto.addTarea(aux)
 
-	proyecto.setRecursos(frameRecursos, proyecto)
-	
-	proyecto.mostrarInformacion(frameMain)
-	
-	caminoCritico = CaminoCritico(proyecto)
-	caminoCritico.calculoCaminoCritico()
-	Gantt(frameMain,proyecto)
+def introducirTarea():
+	if proyecto.getFechaInicio()==None:
+		tkMessageBox.showerror("Error", "Debes definir una fecha de inicio del proyecto")
+	else:
+	        aux = Tarea(nom.get(), int(dur.get()))  
+	        if ant.get()!='':
+			for j in ant.get().split(","):
+				for i in proyecto.getTareas():
+	                        	if i.getNombre()==j:
+	                                	aux.setAntecesora(i)
+	                               	 	i.setSucesora(aux)
+						if(i.getEarlyStart()+i.getDuracion()>aux.getEarlyStart()):
+							aux.setEarlyStart(i.getEarlyStart()+i.getDuracion())
+		else:
+			aux.setEarlyStart(0)
+			aux.setAntecesora(proyecto.getTareaInicio())
+			proyecto.getTareaInicio().setSucesora(aux)    
+			     
+	        proyecto.addTarea(aux)
+		
+		proyecto.fixLaborables()
+		
+		proyecto.setRecursos(frameRecursos, proyecto)
+		
+		proyecto.mostrarInformacion(frameMain)
+		
+		caminoCritico = CaminoCritico(proyecto)
+		caminoCritico.calculoCaminoCritico()
+		Gantt(frameMain,proyecto)
                 
 def calcularRL():
 	if len(proyecto.getRecursos()) == 0:
@@ -155,5 +166,7 @@ proyecto.mostrarInformacion(frameMain)
 
 proyecto.setFechas(frameFechas)
 proyecto.setRecursos(frameRecursos, proyecto)
+
+
 
 frame.mainloop()         

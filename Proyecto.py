@@ -17,7 +17,19 @@ class Proyecto:
 		return self.fechasProyecto.getFechaInicio()
 
 	def getFechaFin(self):
-		return self.fechasProyecto.getFechaInicio()+timedelta(days=self.tareaFinal.getLateStart())
+		return self.fechasProyecto.getLaborables()[-1]
+
+	def fixLaborables(self):
+		self.fechasProyecto.fixLaborables()
+		
+	def getLaborables(self):
+		return self.fechasProyecto.getLaborables()
+				
+	def setDuracion(self, duracion):
+		self.fechasProyecto.setDuracion(duracion)
+	
+	def getDuracion(self):
+		return self.fechasProyecto.getDuracion()
 
 	def setFechas(self, frame):
 		self.fechasProyecto.setFechas(frame)

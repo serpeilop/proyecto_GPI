@@ -30,20 +30,4 @@ class CaminoCritico:
 			sucesoras=auxiliar
 		
 			
-			
-		print "Duracion del proyecto:" + str(self.proyecto.getTareaFinal().getLateStart()) + " dias"
-		if self.proyecto.getFechaInicio()!= None:
-			print "Empieza el " + str(self.proyecto.getFechaInicio()) + " y acaba el " + str(self.proyecto.getFechaFin())
-		else:
-			print "No hay fecha de inicio programada"
-		print "Camino Critico:"
-		for camino in self.proyecto.getTareas():		
-			if camino.getHolgura()==0:
-				print camino.getNombre()
-	
-		print "Nombre - Early - Late"
-		for pruebas in self.proyecto.getTareas():
-			print pruebas.getNombre()+ " " + str(pruebas.getEarlyStart())+ " " + str(pruebas.getLateStart()) + " " + str(pruebas.getHolgura())
-
-		
-	
+		self.proyecto.setDuracion(self.proyecto.getTareaFinal().getLateStart())
