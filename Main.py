@@ -134,8 +134,10 @@ def flexibilidad():
 		tkMessageBox.showerror("Error", "Debes crear y asignar recursos.")
 	else:
 		print 'Flexibilidad'
+		#flexFrame = Tk()
 		flexibilidad = Flexibilidad(frameMain,proyecto)
 		flexibilidad.comprobarHolguras()
+		flexibilidad.construirVentana()
 		
 def nivelacionRecursos():
 	nivelacionRecursos = NivelacionRecursos(proyecto)

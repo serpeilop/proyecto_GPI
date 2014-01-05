@@ -10,10 +10,12 @@ class MejoraProgramacionesFactibles:
 	def aplicarMejoras(self):
 		fin = 9999999
 		while True:
-			self.aplicarRetraso()
-			self.aplicarAdelanto()
+			#self.aplicarRetraso()
+			#self.aplicarAdelanto()
 			nuevoFin = self.proyecto.getTareaFinal().getEarlyStart()
 			if(nuevoFin < fin):
+				self.aplicarRetraso()
+				self.aplicarAdelanto()
 				fin = nuevoFin
 			else:
 				break
