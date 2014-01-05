@@ -56,7 +56,7 @@ class Fechas:
        		tabla.set(0,0,"Fechas festivas: ")
        		for i in self.festivos:
        			tabla.set(self.festivos.index(i)+1,0,i)
-               	tabla.grid(column=8, row =0, rowspan=20, sticky=N)
+               	tabla.grid(column=7, row =0, rowspan=20, sticky=N)
 			
 		
 		
