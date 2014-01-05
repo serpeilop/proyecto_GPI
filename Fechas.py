@@ -16,7 +16,7 @@ class Fechas:
 		fecha = date(int(ano),int(mes),int(dia))
 		self.festivos.append(fecha)
 		
-       		tabla = Tabla(ventana_fechas, len(self.festivos)+1,1,20)
+       		tabla = Tabla(ventana_fechas, len(self.festivos)+1,1,30)
        		tabla.set(0,0,"Fechas festivas: ")
        		for i in self.festivos:
        			tabla.set(self.festivos.index(i)+1,0,i)

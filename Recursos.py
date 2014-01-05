@@ -10,12 +10,13 @@ class Recursos:
 		
 	def getRecursos(self):
 		return self.recursos
-		
+	
+	
 	def crearRecurso(self, nombre, capacidad, frameCrear, frameAsignar, var_recurso):
 		recurso = Recurso(str(nombre), int(capacidad))
 		self.recursos.append(recurso)
 		
-       		tabla = Tabla(frameCrear, len(self.recursos)+1,2,20)
+       		tabla = Tabla(frameCrear, len(self.recursos)+1,2,25)
        		tabla.set(0,0,"Nombre")
        		tabla.set(0,1,"Cantidad")
        		for i in self.recursos:
@@ -27,13 +28,25 @@ class Recursos:
 		menu_recurso.config(width=18)
 		menu_recurso.grid(column=0, row= 7)
 		
-	def asignarRecurso(self,rec, tar , cant, tareas, proyecto, frameHistograma):
+	def asignarRecurso(self,rec, tar , cant, tareas, proyecto, frameHistograma, frameAsignar):
 		
 		tareas[tareas.index(str(tar))].addRecurso(self.recursos[self.recursos.index(str(rec))],int(cant))
 		
+		self.mostrarAsignaciones(frameAsignar, tareas)
+		
 		Histograma(frameHistograma, proyecto)
 
+	def mostrarAsignaciones(self, frameAsignar, tareas):
 		
+		tabla = Tabla(frameAsignar, len(tareas)+1,2, 25)
+		tabla.set(0,0,"Tarea")
+		tabla.set(0,1,"Recursos")
+		for i in tareas:
+			tabla.set(tareas.index(i)+1,0,i.getNombre())
+			tabla.set(tareas.index(i)+1,1,i.getRecursos())
+
+	        tabla.grid(column=1, row =0, rowspan=10, sticky=N)
+			
 	def setRecursos(self, frameRecursos, proyecto,tareas):
 		
 
@@ -95,10 +108,11 @@ class Recursos:
 		Label(frameAsignar, text="Cantidad:").grid(row=10)
 		Entry(frameAsignar,textvariable=cant).grid(row=11)
 		
-		Button(frameAsignar, text='Asignar', command=lambda: self.asignarRecurso(var_recurso.get(),var_tarea.get(),cant.get(),tareas, proyecto, frameHistograma)).grid(row=12)
+		Button(frameAsignar, text='Asignar', command=lambda: self.asignarRecurso(var_recurso.get(),var_tarea.get(),cant.get(),tareas, proyecto, frameHistograma, frameAsignar)).grid(row=12)
 		
 		###########
-
+		
+		self.mostrarAsignaciones(frameAsignar, tareas)
 		
        		tabla = Tabla(frameCrear, len(self.recursos)+1,2,20)
        		tabla.set(0,0,"Nombre")
