@@ -31,8 +31,8 @@ class Proyecto:
 	def getDuracion(self):
 		return self.fechasProyecto.getDuracion()
 
-	def setFechas(self, frame):
-		self.fechasProyecto.setFechas(frame)
+	def setFechas(self, frameFechas , frameMain , proyecto):
+		self.fechasProyecto.setFechas(frameFechas , frameMain , proyecto)
 	#return array de tareas
 	def getTareas(self):
 		return self.tareas

@@ -32,8 +32,8 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
-'''
-proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988)
+
+proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
 proyecto.addTarea(Tarea("A", 2))
 proyecto.addTarea(Tarea("B", 3))
@@ -74,7 +74,7 @@ caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto)
-'''
+
 #-----------------------------
 
 
@@ -163,7 +163,7 @@ Button(frameMain, text="Flexibilidad", command=flexibilidad, width=17).grid(row=
 
 proyecto.mostrarInformacion(frameMain)
 
-proyecto.setFechas(frameFechas)
+proyecto.setFechas(frameFechas, frameMain, proyecto)
 proyecto.setRecursos(frameRecursos, proyecto)
 
 
