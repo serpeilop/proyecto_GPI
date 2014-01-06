@@ -32,7 +32,7 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
-'''
+
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988)
 
 proyecto.addTarea(Tarea("A", 2))
@@ -73,8 +73,8 @@ caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
-Gantt(frameMain,proyecto)
-'''
+Gantt(frameMain,proyecto,1)
+
 #-----------------------------
 
 

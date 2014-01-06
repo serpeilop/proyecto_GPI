@@ -139,7 +139,8 @@ class DisponibilidadEnTiempo:
 		if hlRetraso!= 0:
 			while (instanteSecuenciar!=tarea.getEarlyStart()):
 				if self.esPosibleSecuenciar(tarea,instanteSecuenciar)==True:
-					instantesParaSecuenciar.append(instanteSecuenciar)
+					#instantesParaSecuenciar.append(instanteSecuenciar)
+					instantesParaSecuenciar.append(self.proyecto.getLaborables()[instanteSecuenciar].strftime('%d-%b-%Y'))
 				instanteSecuenciar = instanteSecuenciar -1
 		
 
@@ -152,7 +153,8 @@ class DisponibilidadEnTiempo:
 		if hlAdelanto!= 0:
 			while instanteSecuenciar!=tarea.getEarlyStart():
 				if self.esPosibleSecuenciar(tarea,instanteSecuenciar)==True:
-					instantesParaSecuenciar.append(instanteSecuenciar)
+					#instantesParaSecuenciar.append(instanteSecuenciar)
+					instantesParaSecuenciar.append(self.proyecto.getLaborables()[instanteSecuenciar].strftime('%d-%b-%Y'))
 				instanteSecuenciar = instanteSecuenciar +1
 
 		#Dejamos el consumo de recursos como estaba al principio
