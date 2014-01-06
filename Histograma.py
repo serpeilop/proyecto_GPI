@@ -8,7 +8,8 @@ class Histograma:
 
 		duracion = proyecto.getTareaFinal().getEarlyStart()
 		
-		
+		for child in frame.winfo_children():
+		    child.destroy()
 		for num,rec in enumerate(proyecto.getRecursos()):
 			cargas = []		
 			for dia in range(duracion):	
@@ -20,8 +21,8 @@ class Histograma:
 				cargas.append(aux)
 		
 			n = max(max(cargas)+2,rec.getDisponible()+2)		
-			altura=30
-			ancho=40
+			altura=30/(n/5)
+			ancho=40/(duracion/5)
 
 			w = Canvas(frame, width=80+ancho*duracion, height=80+altura*n)
 			w.grid(row=num)
