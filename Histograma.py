@@ -21,8 +21,8 @@ class Histograma:
 				cargas.append(aux)
 		
 			n = max(max(cargas)+2,rec.getDisponible()+2)		
-			altura=30/(n/5)
-			ancho=40/(duracion/5)
+			altura=30
+			ancho=40
 
 			w = Canvas(frame, width=80+ancho*duracion, height=80+altura*n)
 			w.grid(row=num)
