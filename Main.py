@@ -33,11 +33,8 @@ proyecto = Proyecto()
 
 #------PRUEBAS--------
 
-<<<<<<< HEAD
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
-=======
-proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988)
->>>>>>> 74bb819ddd3413a40dc6e56fffa5b564c31c4bc8
+
 
 proyecto.addTarea(Tarea("A", 2))
 proyecto.addTarea(Tarea("B", 3))
@@ -77,11 +74,7 @@ caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
-<<<<<<< HEAD
-Gantt(frameMain,proyecto)
-=======
 Gantt(frameMain,proyecto,1)
->>>>>>> 74bb819ddd3413a40dc6e56fffa5b564c31c4bc8
 
 #-----------------------------
 
@@ -125,7 +118,7 @@ def introducirTarea():
 		caminoCritico.calculoCaminoCritico()
 		proyecto.fixLaborables()
 		proyecto.mostrarInformacion(frameMain)
-		Gantt(frameMain,proyecto)
+		Gantt(frameMain,proyecto,1)
                 
 def calcularRL():
 	if len(proyecto.getRecursos()) == 0:

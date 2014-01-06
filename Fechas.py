@@ -15,7 +15,7 @@ class Fechas:
 		fechaInicio = date(int(ano),int(mes),int(dia))
 		self.fechaInicio = fechaInicio
 		self.fixLaborables()
-		Gantt(frameMain,proyecto)
+		Gantt(frameMain,proyecto, 1)
 		proyecto.mostrarInformacion(frameMain)
 		
 	def setFechas(self, frameFechas, frameMain , proyecto):
@@ -62,7 +62,7 @@ class Fechas:
 
 		self.fixLaborables()
 
-		Gantt(frameMain,proyecto)
+		Gantt(frameMain,proyecto,1)
 		proyecto.mostrarInformacion(frameMain)
 	
 	def fixLaborables(self):

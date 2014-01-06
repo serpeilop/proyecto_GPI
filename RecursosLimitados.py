@@ -90,7 +90,7 @@ class RecursosLimitados:
 		tareaFinal.setEarlyStart(maximo)
 		tareaFinal.setLateStart(maximo)
 
-		Gantt(self.frameMain,self.proyecto)
+		Gantt(self.frameMain,self.proyecto,1)
 		print
 		print "Nueva Duracion: "+str(maximo)
 
