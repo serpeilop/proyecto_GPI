@@ -20,7 +20,7 @@ class MejoraProgramacionesFactibles:
 			else:
 				break
 				
-		Gantt(self.frameMain,self.proyecto)
+		Gantt(self.frameMain,self.proyecto,2)
 
 	def aplicarRetraso(self):
 		print

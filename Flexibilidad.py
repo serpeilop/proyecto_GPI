@@ -25,7 +25,7 @@ class Flexibilidad:
 			tabla.set(indice+1,2,tarea.getHlAdelanto())
 			tabla.set(indice+1,3,self.resultados[indice])
 			indice = indice +1
-	        tabla.grid(column=2, row =10, rowspan=10, sticky=E)
+	        tabla.grid(column=2, row =10, rowspan=10, sticky=N)
 
 	def comprobarHolguras(self):
 		for tarea in self.proyecto.getTareas():
