@@ -16,13 +16,7 @@ class Recursos:
 		recurso = Recurso(str(nombre), int(capacidad))
 		self.recursos.append(recurso)
 		
-       		tabla = Tabla(frameCrear, len(self.recursos)+1,2,25)
-       		tabla.set(0,0,"Nombre")
-       		tabla.set(0,1,"Cantidad")
-       		for i in self.recursos:
-       			tabla.set(self.recursos.index(i)+1,0,i.getNombre())
-       			tabla.set(self.recursos.index(i)+1,1,i.getDisponible())
-               	tabla.grid(column=1, row =0, rowspan=25, sticky=N)
+       		self.mostrarRecursos(frameCrear)
 		
 		menu_recurso = OptionMenu(frameAsignar, var_recurso,"Elija recurso", *self.recursos)
 		menu_recurso.config(width=18)
@@ -46,6 +40,16 @@ class Recursos:
 			tabla.set(tareas.index(i)+1,1,i.getRecursos())
 
 	        tabla.grid(column=1, row =0, rowspan=10, sticky=N)
+	
+	def mostrarRecursos(self, frameCrear):
+		
+       		tabla = Tabla(frameCrear, len(self.recursos)+1,2,20)
+       		tabla.set(0,0,"Nombre")
+       		tabla.set(0,1,"Cantidad")
+       		for i in self.recursos:
+       			tabla.set(self.recursos.index(i)+1,0,i.getNombre())
+       			tabla.set(self.recursos.index(i)+1,1,i.getDisponible())
+               	tabla.grid(column=1, row =0, rowspan=25, sticky=N)
 			
 	def setRecursos(self, frameRecursos, proyecto,tareas):
 		
@@ -113,12 +117,8 @@ class Recursos:
 		###########
 		
 		self.mostrarAsignaciones(frameAsignar, tareas)
+		self.mostrarRecursos(frameCrear)
+		Histograma(frameHistograma, proyecto)
 		
-       		tabla = Tabla(frameCrear, len(self.recursos)+1,2,20)
-       		tabla.set(0,0,"Nombre")
-       		tabla.set(0,1,"Cantidad")
-       		for i in self.recursos:
-       			tabla.set(self.recursos.index(i)+1,0,i.getNombre())
-       			tabla.set(self.recursos.index(i)+1,1,i.getDisponible())
-               	tabla.grid(column=1, row =0, rowspan=25, sticky=N)
+       		
 	

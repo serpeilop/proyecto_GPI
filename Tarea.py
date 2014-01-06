@@ -6,10 +6,10 @@ class Tarea:
         self.sucesoras = []
         self.start = 0
         self.end = 0
-        self.earlystart=0
-        self.latestart=999999999
+        self.earlyStart=0
+        self.lateStart=999999999
         self.holgura=-1
-        self.holguralibre=-1
+        self.holguraLibre=-1
         self.recursos = {} # C= Recurso, V=Consumo
         self.isSecuenciada = False
         self.isElegible = False
@@ -24,15 +24,15 @@ class Tarea:
         return self.proyecto
 
     def getEarlyStart(self):
-        return self.earlystart
+        return self.earlyStart
 
     def setEarlyStart(self,other):
-        self.earlystart=other
+        self.earlyStart=other
         self.start = other
         self.end = other+self.duracion
     
     def getLateStart(self):
-        return self.latestart
+        return self.lateStart
 
     def getStart(self):
 	   return self.start
@@ -47,7 +47,7 @@ class Tarea:
 	   self.end = other	
 
     def setLateStart(self,other):
-        self.latestart=other
+        self.lateStart=other
 
     def getSucesoras(self):
         return self.sucesoras
@@ -107,11 +107,11 @@ class Tarea:
 
     #Devuelve fecha de finalizacion mas tardia 
     def getSumaLFT(self):
-        return self.latestart + self.duracion
+        return self.lateStart + self.duracion
 
     #Devuelve fecha de finalizacion mas temprana
     def getFechaFinTemprana(self):
-        return self.earlystart + self.duracion
+        return self.earlyStart + self.duracion
         
     def getHlRetraso(self):
         if (self.getEsFin()) or (self.getEsInicio()):
@@ -120,7 +120,7 @@ class Tarea:
         for tarea in self.sucesoras:
             if minimo > tarea.getEarlyStart():
                 minimo = tarea.getEarlyStart()
-        minimo = minimo - (self.duracion + self.earlystart)
+        minimo = minimo - (self.duracion + self.earlyStart)
         return minimo
 
     def getHlAdelanto(self):
@@ -130,22 +130,14 @@ class Tarea:
         for tarea in self.antecesoras:
             if maximo<(tarea.getEarlyStart()+tarea.getDuracion()):
                 maximo = tarea.getEarlyStart()+tarea.getDuracion()
-        maximo = self.earlystart - maximo
+        maximo = self.earlyStart - maximo
         return maximo
 
-    '''    
-    def getFechaInicio():
-    def setFechaInicio():
-    def getFechaFin():
-    def setFechaFin():
-    def getHolguraTotal():
-    def setHolguraTotal():
-    def getHolguraLibre():
-    def setHolguraLibre():
-    def getUsoRecursos():
-    def setUsoRecursos():
-    def getHLAdelanto():
-'''
+    def setHolguraLibre(self, other):
+	    self.holguraLibre=other 
+	    
+    def getHolguraLibre(self):
+	    return self.holguraLibre
 		                
     def __repr__(self):
         return str(self)

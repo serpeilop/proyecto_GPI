@@ -8,7 +8,8 @@ class Histograma:
 
 		duracion = proyecto.getTareaFinal().getEarlyStart()
 		
-		
+		for child in frame.winfo_children():
+		    child.destroy()
 		for num,rec in enumerate(proyecto.getRecursos()):
 			cargas = []		
 			for dia in range(duracion):	
@@ -28,8 +29,7 @@ class Histograma:
 			
 			w.create_text(40+((ancho*duracion)/2),20,text=rec.getNombre())
 			
-			w.create_line(40, 40+altura*n, 40, 40)
-			w.create_line(40, 40+altura*n, 40+ancho*duracion, 40+altura*n)
+
 		
 			for m in range(n+1):
 				w.create_line(30, 40+altura*(n-m), 40, 40+altura*(n-m))
@@ -37,12 +37,16 @@ class Histograma:
 
 			for j in range(duracion+1):
 				w.create_line(40+ancho*j,40+altura*n,40+ancho*j,50+altura*n)
-				w.create_text(40+ancho*j,60+altura*n,text=str(j))
+				w.create_text(40+ancho*j,60+altura*n,text=proyecto.getLaborables()[j].strftime('%d/%b'), font=("Purisa",10))
 
 			for i, j in enumerate(cargas):
 				w.create_rectangle(40+ancho*i, 40+altura*n, 40+ancho+ancho*i, 40+(n-j)*altura, fill="blue")
-	
-				w.create_line(40,40+(n-rec.getDisponible())*altura,40+ancho*duracion,40+(n-rec.getDisponible())*altura, fill="red")
+			
+			#EJES
+			w.create_line(40, 40+altura*n, 40, 40)
+			w.create_line(40, 40+altura*n, 40+ancho*duracion, 40+altura*n)
+			#Limite disponible
+			w.create_line(40,40+(n-rec.getDisponible())*altura,40+ancho*duracion,40+(n-rec.getDisponible())*altura, fill="red")
 			
 			
 		

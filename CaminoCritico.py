@@ -29,5 +29,15 @@ class CaminoCritico:
 					auxiliar.append(suc2)
 			sucesoras=auxiliar
 		
-			
+		for i in self.proyecto.getTareas():
+			late = 0
+			for index , j in enumerate (i.getSucesoras()):
+				if index == 0:
+					late = j.getEarlyStart()
+				else:
+					late = min(late,j.getEarlyStart)
+			i.setHolguraLibre(late-(i.getEarlyStart()+i.getDuracion()))
+				
+					
+				
 		self.proyecto.setDuracion(self.proyecto.getTareaFinal().getLateStart())

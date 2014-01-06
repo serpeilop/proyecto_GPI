@@ -32,8 +32,9 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
+'''
+proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
-proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988)
 
 proyecto.addTarea(Tarea("A", 2))
 proyecto.addTarea(Tarea("B", 3))
@@ -74,7 +75,7 @@ caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto,1)
-
+'''
 #-----------------------------
 
 
@@ -117,7 +118,7 @@ def introducirTarea():
 		caminoCritico.calculoCaminoCritico()
 		proyecto.fixLaborables()
 		proyecto.mostrarInformacion(frameMain)
-		Gantt(frameMain,proyecto)
+		Gantt(frameMain,proyecto,1)
                 
 def calcularRL():
 	if len(proyecto.getRecursos()) == 0:
@@ -163,7 +164,7 @@ Button(frameMain, text="Flexibilidad", command=flexibilidad, width=17).grid(row=
 
 proyecto.mostrarInformacion(frameMain)
 
-proyecto.setFechas(frameFechas)
+proyecto.setFechas(frameFechas, frameMain, proyecto)
 proyecto.setRecursos(frameRecursos, proyecto)
 
 

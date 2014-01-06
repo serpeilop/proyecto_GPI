@@ -31,8 +31,8 @@ class Proyecto:
 	def getDuracion(self):
 		return self.fechasProyecto.getDuracion()
 
-	def setFechas(self, frame):
-		self.fechasProyecto.setFechas(frame)
+	def setFechas(self, frameFechas , frameMain , proyecto):
+		self.fechasProyecto.setFechas(frameFechas , frameMain , proyecto)
 	#return array de tareas
 	def getTareas(self):
 		return self.tareas
@@ -87,17 +87,20 @@ class Proyecto:
 		return self.tareaInicio
 		
 	def mostrarInformacion(self, frameMain):
-		tabla = Tabla(frameMain, len(self.tareas)+1,5,15)
+		tabla = Tabla(frameMain, len(self.tareas)+1,7,15)
 		tabla.set(0,0,"Nombre")
 		tabla.set(0,1,"Duracion")
 		tabla.set(0,2,"Antecesoras")
 		tabla.set(0,3,"Fecha Inicio")
 		tabla.set(0,4,"Fecha Fin")
+		tabla.set(0,5,"Holgura Total")
+		tabla.set(0,6,"Holgura Libre")
 		for i in self.tareas:
 			tabla.set(self.tareas.index(i)+1,0,i.getNombre())
 			tabla.set(self.tareas.index(i)+1,1,i.getDuracion())
 			tabla.set(self.tareas.index(i)+1,2,i.getAntecesoras())
 			tabla.set(self.tareas.index(i)+1,3,self.fechasProyecto.getLaborables()[i.getEarlyStart()].strftime('%d-%b-%Y'))
 			tabla.set(self.tareas.index(i)+1,4,self.fechasProyecto.getLaborables()[i.getEarlyStart()+i.getDuracion()].strftime('%d-%b-%Y'))
-
+			tabla.set(self.tareas.index(i)+1,5,i.getHolgura())
+			tabla.set(self.tareas.index(i)+1,6,i.getHolguraLibre())
 	        tabla.grid(column=1, row =0, rowspan=10, sticky=N)
