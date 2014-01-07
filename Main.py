@@ -9,6 +9,7 @@ from Gantt import *
 from MejoraProgramacionesFactibles import *
 from Flexibilidad import *
 import tkMessageBox
+from copy import *
 from ttk import *
 
 frame = Tk()
@@ -27,9 +28,7 @@ notebook.add(frameMain, text='Tareas')
 notebook.add(frameFechas, text='Fechas')
 notebook.add(frameRecursos, text='Recursos')
 
-
 proyecto = Proyecto()
-
 
 #------PRUEBAS--------
 
@@ -83,8 +82,10 @@ proyecto.getTareas()[9].setSucesora(proyecto.getTareas()[10])
 proyecto.getTareas()[10].setAntecesora(proyecto.getTareas()[9])
 proyecto.getTareas()[10].setSucesora(proyecto.getTareas()[9])
 
-
+'''
 #-------
+
+'''
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
 
@@ -178,7 +179,8 @@ def calcularRL():
 	else:
 		print 'Recursos Limitados: Calculo del esquema Serie'
 		recLimFrame = Tk()
-		recLimitados = RecursosLimitados(proyecto,recLimFrame) 
+		copiaProyecto = deepcopy(proyecto) 
+		recLimitados = RecursosLimitados(copiaProyecto,recLimFrame) 
 		recLimitados.aplicarEsquemaSerie()
 		#camino critico calcula fechas tardias (YA HECHO)
 		#recalcula fechas proyecto
@@ -191,7 +193,8 @@ def mejoraPF():
 		print 'Mejora Programaciones Factibles'
 		#calcularRL()
 		mejoraFrame = Tk()
-		progFactibles = MejoraProgramacionesFactibles(proyecto,mejoraFrame)
+		copiaProyecto = deepcopy(proyecto)
+		progFactibles = MejoraProgramacionesFactibles(copiaProyecto,mejoraFrame)
 		progFactibles.aplicarMejoras()
 
 def flexibilidad():
@@ -200,7 +203,8 @@ def flexibilidad():
 	else:
 		print 'Flexibilidad'
 		flexFrame = Tk()
-		flexibilidad = Flexibilidad(flexFrame,proyecto)
+		copiaProyecto = deepcopy(proyecto)
+		flexibilidad = Flexibilidad(flexFrame,copiaProyecto)
 		flexibilidad.comprobarHolguras()
 		flexibilidad.construirVentana()
 		
