@@ -1,5 +1,6 @@
 from DisponibilidadEnTiempo import *
 from Gantt import *
+from Histograma import *
 
 class RecursosLimitados:
 	def __init__ (self, proyecto, frameMain):
@@ -90,7 +91,8 @@ class RecursosLimitados:
 		tareaFinal.setEarlyStart(maximo)
 		tareaFinal.setLateStart(maximo)
 
-		Gantt(self.frameMain,self.proyecto,2)
+		Gantt(self.frameMain,self.proyecto,1)
+		Histograma(self.frameMain, self.proyecto)
 
 		print
 		print "Nueva Duracion: "+str(maximo)
