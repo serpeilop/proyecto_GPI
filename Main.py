@@ -30,106 +30,52 @@ notebook.add(frameRecursos, text='Recursos')
 
 proyecto = Proyecto()
 
-#------PRUEBAS--------
+#----------------------------- Pruebas nuevas!
 
-'''
-#Ejercicio Tema 6 (RL)
-proyecto.addTarea(Tarea("A", 5))#0
-proyecto.addTarea(Tarea("B", 5))#1
-proyecto.addTarea(Tarea("C", 4))#2
-proyecto.addTarea(Tarea("D", 2))#3
-proyecto.addTarea(Tarea("E", 3))#4
-proyecto.addTarea(Tarea("F", 3))#5
-proyecto.addTarea(Tarea("G", 4))#6
-proyecto.addTarea(Tarea("H", 3))#7
-proyecto.addTarea(Tarea("I", 3))#8
-proyecto.addTarea(Tarea("J", 2))#9
-proyecto.addTarea(Tarea("K", 3))#10
-
-proyecto.getTareas()[0].setAntecesora(proyecto.getTareaInicio())
-proyecto.getTareas()[0].setSucesora(proyecto.getTareas()[2])
-proyecto.getTareas()[0].setSucesora(proyecto.getTareas()[3])
-
-proyecto.getTareas()[1].setAntecesora(proyecto.getTareaInicio())
-proyecto.getTareas()[1].setSucesora(proyecto.getTareas()[6])
-
-proyecto.getTareas()[2].setAntecesora(proyecto.getTareas()[0])
-proyecto.getTareas()[2].setSucesora(proyecto.getTareas()[8])
-
-proyecto.getTareas()[3].setAntecesora(proyecto.getTareas()[0])
-proyecto.getTareas()[3].setSucesora(proyecto.getTareas()[4])
-proyecto.getTareas()[3].setSucesora(proyecto.getTareas()[5])
-
-proyecto.getTareas()[4].setAntecesora(proyecto.getTareas()[3])
-proyecto.getTareas()[4].setSucesora(proyecto.getTareas()[9])
-
-proyecto.getTareas()[5].setAntecesora(proyecto.getTareas()[3])
-proyecto.getTareas()[5].setSucesora(proyecto.getTareas()[7])
-
-proyecto.getTareas()[6].setAntecesora(proyecto.getTareas()[1])
-proyecto.getTareas()[6].setSucesora(proyecto.getTareas()[7])
-
-proyecto.getTareas()[7].setAntecesora(proyecto.getTareas()[5])
-proyecto.getTareas()[7].setAntecesora(proyecto.getTareas()[6])
-
-proyecto.getTareas()[8].setAntecesora(proyecto.getTareas()[2])
-proyecto.getTareas()[8].setSucesora(proyecto.getTareas()[9])
-
-proyecto.getTareas()[9].setAntecesora(proyecto.getTareas()[4])
-proyecto.getTareas()[9].setAntecesora(proyecto.getTareas()[8])
-proyecto.getTareas()[9].setSucesora(proyecto.getTareas()[10])
-
-proyecto.getTareas()[10].setAntecesora(proyecto.getTareas()[9])
-proyecto.getTareas()[10].setSucesora(proyecto.getTareas()[9])
-
-'''
-#-------
-
-'''
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
+def crearRecurso(nombre, cantidad):
+	proyecto.getRecursos().append(Recurso(nombre,cantidad))
+	
+def meterTarea(nombre, duracion, antecesoras, recursos):
+	
+	aux = Tarea(nombre, duracion)  
+	if antecesoras!='':
+		for j in antecesoras.split(","):
+			for i in proyecto.getTareas():
+				if i.getNombre()==j:
+					aux.setAntecesora(i)
+					i.setSucesora(aux)
+					if(i.getEarlyStart()+i.getDuracion()>aux.getEarlyStart()):
+						aux.setEarlyStart(i.getEarlyStart()+i.getDuracion())
+	else:
+		aux.setEarlyStart(0)
+		aux.setAntecesora(proyecto.getTareaInicio())
+		proyecto.getTareaInicio().setSucesora(aux) 	
+	proyecto.addTarea(aux)
+	
+	for i in recursos:
+		for j in proyecto.getRecursos():
+			if j.getNombre()==i:
+				aux.addRecurso(j,recursos[i])
 
-proyecto.addTarea(Tarea("A", 2))
-proyecto.addTarea(Tarea("B", 3))
-proyecto.addTarea(Tarea("C", 4))
-proyecto.addTarea(Tarea("D", 2))
 
-proyecto.getTareas()[0].setAntecesora(proyecto.getTareaInicio())
-proyecto.getTareas()[3].setAntecesora(proyecto.getTareaInicio())
-proyecto.getTareas()[2].setAntecesora(proyecto.getTareas()[1])
-proyecto.getTareas()[1].setAntecesora(proyecto.getTareas()[0])
-proyecto.getTareas()[0].setSucesora(proyecto.getTareas()[1])
-proyecto.getTareas()[1].setSucesora(proyecto.getTareas()[2])
+crearRecurso("Programador", 5)
 
-
-proyecto.getTareas()[0].setEarlyStart(0)
-proyecto.getTareas()[1].setEarlyStart(2)
-proyecto.getTareas()[2].setEarlyStart(5)
-proyecto.getTareas()[3].setEarlyStart(0)
-
-proyecto.getTareaInicio().setSucesora(proyecto.getTareas()[0])
-proyecto.getTareaInicio().setSucesora(proyecto.getTareas()[3])
-
-
-proyecto.getRecursos().append(Recurso('Analista',5))
-
-proyecto.getTareas()[0].addRecurso(proyecto.getRecursos()[0], 5)
-#proyecto.getTareas()[0].addRecurso(proyecto.getRecursos()[1], 0)
-proyecto.getTareas()[1].addRecurso(proyecto.getRecursos()[0], 5)
-#proyecto.getTareas()[1].addRecurso(proyecto.getRecursos()[1], 1)
-proyecto.getTareas()[2].addRecurso(proyecto.getRecursos()[0], 1)
-#proyecto.getTareas()[2].addRecurso(proyecto.getRecursos()[1], 3)
-proyecto.getTareas()[3].addRecurso(proyecto.getRecursos()[0], 1)
-#proyecto.getTareas()[3].addRecurso(proyecto.getRecursos()[1], 0)
-
+meterTarea("A",2,"",{"Programador":3})
+meterTarea("B",2,"A",{"Programador":2})
+meterTarea("C",2,"B,A",{"Programador":3})
 
 caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto,14,1)
-'''
-#-----------------------------
+
+#------------------------------------	 
+
+
+
 
 
 Label(frameMain, text="Nombre: ").grid(row=1)
@@ -145,25 +91,29 @@ ant = StringVar()
 Entry(frameMain, textvariable=ant).grid(row=6)
 
 
+def nuevaTarea(nombre, duracion, antecesoras):
+	aux = Tarea(nombre, duracion)  
+	if antecesoras!='':
+		for j in antecesoras.split(","):
+			for i in proyecto.getTareas():
+				if i.getNombre()==j:
+					aux.setAntecesora(i)
+					i.setSucesora(aux)
+					if(i.getEarlyStart()+i.getDuracion()>aux.getEarlyStart()):
+						aux.setEarlyStart(i.getEarlyStart()+i.getDuracion())
+	else:
+		aux.setEarlyStart(0)
+		aux.setAntecesora(proyecto.getTareaInicio())
+		proyecto.getTareaInicio().setSucesora(aux) 	
+
+	proyecto.addTarea(aux)
+	
 def introducirTarea():
 	if proyecto.getFechaInicio()==None:
 		tkMessageBox.showerror("Error", "Debes definir una fecha de inicio del proyecto")
 	else:
-	        aux = Tarea(nom.get(), int(dur.get()))  
-	        if ant.get()!='':
-			for j in ant.get().split(","):
-				for i in proyecto.getTareas():
-	                        	if i.getNombre()==j:
-	                                	aux.setAntecesora(i)
-	                               	 	i.setSucesora(aux)
-						if(i.getEarlyStart()+i.getDuracion()>aux.getEarlyStart()):
-							aux.setEarlyStart(i.getEarlyStart()+i.getDuracion())
-		else:
-			aux.setEarlyStart(0)
-			aux.setAntecesora(proyecto.getTareaInicio())
-			proyecto.getTareaInicio().setSucesora(aux)    
-			     
-	        proyecto.addTarea(aux)
+	       	nuevaTarea(nom.get(),int(dur.get()),ant.get())
+	       
 		
 		proyecto.setRecursos(frameRecursos, proyecto)
 
@@ -172,7 +122,9 @@ def introducirTarea():
 		proyecto.fixLaborables()
 		proyecto.mostrarInformacion(frameMain)
 		Gantt(frameMain,proyecto,14,1)
-                
+
+
+             
 def calcularRL():
 	if len(proyecto.getRecursos()) == 0:
 		tkMessageBox.showerror("Error", "Debes crear y asignar recursos.")

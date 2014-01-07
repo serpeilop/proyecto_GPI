@@ -21,9 +21,7 @@ class NivelacionRecursos:
 		
 	
 	def cambiarPorcentaje(self, porcentaje):
-		prueba = 5
-		prueba = porcentaje
-		print prueba
+		print "hola"
 		
 	def calcularNivelacion(self):
 		
