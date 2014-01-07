@@ -90,6 +90,7 @@ class RecursosLimitados:
 				maximo = tarea.getEarlyStart() + tarea.getDuracion()
 		tareaFinal.setEarlyStart(maximo)
 		tareaFinal.setLateStart(maximo)
+		self.proyecto.setDuracion(maximo)
 
 		self.frameMain.wm_title("Informe: Programacion Factible con Recursos Limitados")
 		self.frameMain.resizable(0,0)
