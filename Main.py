@@ -32,7 +32,7 @@ proyecto = Proyecto()
 
 
 #------PRUEBAS--------
-'''
+
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
 
@@ -75,7 +75,7 @@ caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto,1)
-'''
+
 #-----------------------------
 
 
@@ -125,7 +125,8 @@ def calcularRL():
 		tkMessageBox.showerror("Error", "Debes crear y asignar recursos.")
 	else:
 		print 'Recursos Limitados: Calculo del esquema Serie'
-		recLimitados = RecursosLimitados(proyecto,frameMain) 
+		recLimFrame = Tk()
+		recLimitados = RecursosLimitados(proyecto,recLimFrame) 
 		recLimitados.aplicarEsquemaSerie()
 		#camino critico calcula fechas tardias (YA HECHO)
 		#recalcula fechas proyecto
@@ -137,7 +138,8 @@ def mejoraPF():
 	else:
 		print 'Mejora Programaciones Factibles'
 		#calcularRL()
-		progFactibles = MejoraProgramacionesFactibles(proyecto,frameMain)
+		mejoraFrame = Tk()
+		progFactibles = MejoraProgramacionesFactibles(proyecto,mejoraFrame)
 		progFactibles.aplicarMejoras()
 
 def flexibilidad():
@@ -145,8 +147,8 @@ def flexibilidad():
 		tkMessageBox.showerror("Error", "Debes crear y asignar recursos.")
 	else:
 		print 'Flexibilidad'
-		#flexFrame = Tk()
-		flexibilidad = Flexibilidad(frameMain,proyecto)
+		flexFrame = Tk()
+		flexibilidad = Flexibilidad(flexFrame,proyecto)
 		flexibilidad.comprobarHolguras()
 		flexibilidad.construirVentana()
 		

@@ -24,7 +24,7 @@ class Gantt:
 		
 		for j in range(duracion+1):
 			w.create_line(40+ancho*j,40+altura*n,40+ancho*j,50+altura*n)
-			w.create_text(40+ancho*j,60+altura*n,text=proyecto.getLaborables()[j].strftime('%d/%b'), font=("Purisa",10))
+			w.create_text(40+ancho*j,60+altura*n,text=proyecto.getLaborables()[j].strftime('%d/%b'), font=("Verdana",7))
 
 		for i in tareas:
 			if i.getHolgura()==0:

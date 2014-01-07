@@ -11,7 +11,7 @@ class Flexibilidad:
 
 	def construirVentana(self):
 
-		#Label(self.flexFrame, text="Flexibilidad: Analisis de holguras").grid(column=2, row=0)
+		Label(self.flexFrame, text="Flexibilidad: Analisis de holguras").grid(column=2, row=0)
 		tabla = Tabla(self.flexFrame, len(self.proyecto.getTareas())+1,4)
 		tabla.set(0,0,"Nombre")
 		tabla.set(0,1,"HL Retraso")
