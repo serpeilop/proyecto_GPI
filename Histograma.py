@@ -6,7 +6,7 @@ class Histograma:
 	
 	def __init__(self, frame, proyecto , row=0, col=0):
 
-		duracion = proyecto.getTareaFinal().getEarlyStart()
+		duracion = proyecto.getDuracion()
 		
 		#for child in frame.winfo_children():
 		#    child.destroy()

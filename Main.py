@@ -60,11 +60,20 @@ def meterTarea(nombre, duracion, antecesoras, recursos):
 				aux.addRecurso(j,recursos[i])
 
 
-crearRecurso("Programador", 5)
+crearRecurso("R1",6)
+crearRecurso("R2",5)
 
-meterTarea("A",2,"",{"Programador":3})
-meterTarea("B",2,"A",{"Programador":2})
-meterTarea("C",2,"B,A",{"Programador":3})
+meterTarea("A",5,"",{"R1":3,"R2":2})
+meterTarea("B",5,"",{"R1":2,"R2":4})
+meterTarea("C",4,"A",{"R1":3,"R2":1})
+meterTarea("D",2,"A",{"R1":4,"R2":3})
+meterTarea("E",3,"D",{"R1":2})
+meterTarea("F",3,"D,",{"R1":1,"R2":1})
+meterTarea("G",4,"B",{"R1":3,"R2":1})
+meterTarea("H",3,"F,G",{"R1":2,"R2":2})
+meterTarea("I",3,"C",{"R1":3,"R2":2})
+meterTarea("J",2,"E,I",{"R1":4,"R2":1})
+meterTarea("K",3,"J",{"R1":5,"R2":4})
 
 caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()

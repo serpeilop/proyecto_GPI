@@ -24,10 +24,14 @@ class NivelacionRecursos:
 		print "hola"
 		
 	def calcularNivelacion(self):
+		print "Hola"
+		#for i in self.proyecto.getTareas():
+		#	if i.getHolgura()!=
+
+
 		
-		copia = []
-		for i in self.proyecto.getTareas():
-			copia.append(i)
+	def calcularCarga(self):
+		
 		cargatotal=0
 		for dia in range(self.proyecto.getTareaFinal().getEarlyStart()):
 			for rec in self.proyecto.getRecursos():
@@ -39,7 +43,3 @@ class NivelacionRecursos:
 				cargatotal = cargatotal + carga
 				print str(dia) + " | " + str(rec) + " " + str(aux)
 		print "Carga total: " + str(cargatotal)
-
-
-		
-	
