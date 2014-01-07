@@ -80,7 +80,6 @@ caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto,14,1)
-
 #------------------------------------	 
 
 

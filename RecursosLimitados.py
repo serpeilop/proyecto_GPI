@@ -93,6 +93,7 @@ class RecursosLimitados:
 
 		self.frameMain.wm_title("Informe: Programacion Factible con Recursos Limitados")
 		self.frameMain.resizable(0,0)
+		self.proyecto.fixLaborables()
 		Histograma(self.frameMain, self.proyecto,2,0)
 		self.proyecto.mostrarInformacion(self.frameMain,0,0)
 		Gantt(self.frameMain,self.proyecto,0,1)
