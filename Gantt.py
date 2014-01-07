@@ -5,7 +5,7 @@ from ttk import *
 class Gantt:
 	
 	
-	def __init__(self, frame, proyecto, fila=0, col=0):
+	def __init__(self, frame, proyecto, fila=0, col=0, rowspan=1, colspan=20):
 
 		tareas = proyecto.getTareas()
 		duracion = proyecto.getDuracion()
@@ -17,7 +17,7 @@ class Gantt:
 		ancho=40
 
 		w = Canvas(frame, width=80+ancho*duracion, height=80+altura*n)
-		w.grid(column=col, row=fila,columnspan=20 , sticky=W)
+		w.grid(column=col, row=fila,columnspan=colspan, rowspan=rowspan , sticky=W)
 
 		w.create_line(40, 40+altura*n, 40, 40)
 		w.create_line(40, 40+altura*n, 40+ancho*duracion, 40+altura*n)

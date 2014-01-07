@@ -210,7 +210,6 @@ def flexibilidad():
 		
 def nivelacionRecursos():
 	nivelacionRecursos = NivelacionRecursos(proyecto)
-	nivelacionRecursos.mostrarNivelacion()
 
 Button(frameMain, text="Introducir", command=introducirTarea, width=17).grid(row=7)
 Label(frameMain, text=" ").grid(row=8)

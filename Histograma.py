@@ -8,8 +8,8 @@ class Histograma:
 
 		duracion = proyecto.getTareaFinal().getEarlyStart()
 		
-		for child in frame.winfo_children():
-		    child.destroy()
+		#for child in frame.winfo_children():
+		#    child.destroy()
 		for num,rec in enumerate(proyecto.getRecursos()):
 			cargas = []		
 			for dia in range(duracion):	
