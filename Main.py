@@ -215,7 +215,7 @@ Button(frameMain, text="Nivelacion de Recursos", command=nivelacionRecursos, wid
 Button(frameMain, text="Recursos Limitados", command=calcularRL, width=17).grid(row=11)
 Button(frameMain, text="Mejora Progr. Factibles", command=mejoraPF, width=17).grid(row=12)
 Button(frameMain, text="Flexibilidad", command=flexibilidad, width=17).grid(row=13)
-
+#Scrollbar(frameMain).grid(column=3, rowspan=15)
 proyecto.mostrarInformacion(frameMain)
 
 proyecto.setFechas(frameFechas, frameMain, proyecto)

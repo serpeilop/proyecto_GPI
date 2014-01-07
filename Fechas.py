@@ -11,6 +11,7 @@ class Fechas:
 	fechaInicio = None
 	duracion = 0
 	domingos = True
+	sabados = True
 
 	def cambiarFechaInicio(self, dia, mes , ano , proyecto , frameMain):
 		fechaInicio = date(int(ano),int(mes),int(dia))
@@ -29,6 +30,7 @@ class Fechas:
 		mesf = StringVar()
 		anof = StringVar()
 		domingos = IntVar()
+		sabados = IntVar()
 	
 		Label(frameFechas, text="Fecha de Inicio:").grid(row=0, columnspan=7, sticky=W)
 		Label(frameFechas, text="Dia:").grid(row=1)
@@ -48,8 +50,10 @@ class Fechas:
 		Button(frameFechas, text="Anadir", command=lambda: self.addFestivo(diaf.get(),mesf.get(),anof.get(),frameFechas , proyecto , frameMain), width=10).grid(row=3, column=6)
 		
 		domingos.set(1)
-		Checkbutton(frameFechas, text="Domingos son festivos", variable=domingos , command=lambda: self.activarDomingos(frameMain, proyecto)).grid()
-		
+		sabados.set(1)
+		Checkbutton(frameFechas, text="Domingos son festivos", variable=domingos , command=lambda: self.activarDomingos(frameMain, proyecto)).grid(sticky=W, columnspan=7)
+		Checkbutton(frameFechas, text="Sabados son festivos", variable=sabados , command=lambda: self.activarSabados(frameMain, proyecto)).grid(sticky=W, columnspan=7)
+	
 		self.mostrarFechasFestivas(frameFechas)
        	
 	
@@ -63,6 +67,14 @@ class Fechas:
 	def activarDomingos(self, frameMain, proyecto):
 		
 		self.domingos = not self.domingos
+		
+		self.fixLaborables()
+
+		Gantt(frameMain,proyecto,14,1)
+		proyecto.mostrarInformacion(frameMain)
+	def activarSabados(self, frameMain, proyecto):
+		
+		self.sabados = not self.sabados
 		
 		self.fixLaborables()
 
@@ -85,7 +97,7 @@ class Fechas:
 		
 		i=0
 		while len(self.laborables)!=self.duracion+1:
-			if self.fechaInicio+timedelta(days=i) not in self.festivos and not(self.domingos and (self.fechaInicio+timedelta(days=i)).weekday()==6):
+			if self.fechaInicio+timedelta(days=i) not in self.festivos and not(self.domingos and (self.fechaInicio+timedelta(days=i)).weekday()==6) and not(self.sabados and (self.fechaInicio+timedelta(days=i)).weekday()==5):
 				self.laborables.append(self.fechaInicio+timedelta(days=i))
 			i=i+1
 		
