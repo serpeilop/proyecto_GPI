@@ -4,7 +4,7 @@ from Tkinter import *
 class Histograma:
 	
 	
-	def __init__(self, frame, proyecto):
+	def __init__(self, frame, proyecto, col, row):
 
 		duracion = proyecto.getTareaFinal().getEarlyStart()
 		
@@ -25,7 +25,7 @@ class Histograma:
 			ancho=40
 
 			w = Canvas(frame, width=80+ancho*duracion, height=80+altura*n)
-			w.grid(row=num)
+			w.grid(row=num+row,col)
 			
 			w.create_text(40+((ancho*duracion)/2),20,text=rec.getNombre())
 			
