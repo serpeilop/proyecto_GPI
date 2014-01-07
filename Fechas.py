@@ -27,6 +27,7 @@ class Fechas:
 		diaf = StringVar()
 		mesf = StringVar()
 		anof = StringVar()
+		var = IntVar()
 	
 		Label(frameFechas, text="Fecha de Inicio:").grid(row=0, columnspan=7, sticky=W)
 		Label(frameFechas, text="Dia:").grid(row=1)
@@ -45,6 +46,9 @@ class Fechas:
 		Entry(frameFechas,width=5,textvariable=anof).grid(row=3, column=5)
 		Button(frameFechas, text="Anadir", command=lambda: self.addFestivo(diaf.get(),mesf.get(),anof.get(),frameFechas , proyecto , frameMain), width=10).grid(row=3, column=6)
 		
+
+		c = Checkbutton(frameFechas, text="Expand", variable=var)
+		c.grid()
 		self.mostrarFechasFestivas(frameFechas)
        	
 	
