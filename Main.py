@@ -74,7 +74,7 @@ caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
-Gantt(frameMain,proyecto,1)
+Gantt(frameMain,proyecto,14,1)
 
 #-----------------------------
 
@@ -118,7 +118,7 @@ def introducirTarea():
 		caminoCritico.calculoCaminoCritico()
 		proyecto.fixLaborables()
 		proyecto.mostrarInformacion(frameMain)
-		Gantt(frameMain,proyecto,1)
+		Gantt(frameMain,proyecto,14,1)
                 
 def calcularRL():
 	if len(proyecto.getRecursos()) == 0:
