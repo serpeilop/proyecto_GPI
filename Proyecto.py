@@ -86,7 +86,7 @@ class Proyecto:
 	def getTareaInicio(self):
 		return self.tareaInicio
 		
-	def mostrarInformacion(self, frameMain):
+	def mostrarInformacion(self, frameMain, f=0, c=1):
 		tabla = Tabla(frameMain, len(self.tareas)+1,7,15)
 		tabla.set(0,0,"Nombre")
 		tabla.set(0,1,"Duracion")
@@ -103,4 +103,4 @@ class Proyecto:
 			tabla.set(self.tareas.index(i)+1,4,self.fechasProyecto.getLaborables()[i.getEarlyStart()+i.getDuracion()].strftime('%d-%b-%Y'))
 			tabla.set(self.tareas.index(i)+1,5,i.getHolgura())
 			tabla.set(self.tareas.index(i)+1,6,i.getHolguraLibre())
-	        tabla.grid(column=1, row =0, rowspan=10, sticky=N)
+	        tabla.grid(column=c, row =f, rowspan=10, sticky=N)

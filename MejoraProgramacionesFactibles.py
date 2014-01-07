@@ -1,5 +1,6 @@
 from Gantt import *
 from DisponibilidadEnTiempo import *
+from Histograma import *
 
 class MejoraProgramacionesFactibles:
 	def __init__(self, proyecto,frameMain):
@@ -20,7 +21,11 @@ class MejoraProgramacionesFactibles:
 			else:
 				break
 				
-		Gantt(self.frameMain,self.proyecto,2)
+		self.frameMain.wm_title("Informe: Mejora por el proceso Retraso-Adelanto")
+		self.frameMain.resizable(0,0)
+		Histograma(self.frameMain, self.proyecto,2,0)
+		self.proyecto.mostrarInformacion(self.frameMain,0,0)
+		Gantt(self.frameMain,self.proyecto,0,1)
 
 	def aplicarRetraso(self):
 		print

@@ -91,8 +91,11 @@ class RecursosLimitados:
 		tareaFinal.setEarlyStart(maximo)
 		tareaFinal.setLateStart(maximo)
 
-		Gantt(self.frameMain,self.proyecto,1)
-		Histograma(self.frameMain, self.proyecto)
+		self.frameMain.wm_title("Informe: Programacion Factible con Recursos Limitados")
+		self.frameMain.resizable(0,0)
+		Histograma(self.frameMain, self.proyecto,2,0)
+		self.proyecto.mostrarInformacion(self.frameMain,0,0)
+		Gantt(self.frameMain,self.proyecto,0,1)
 
 		print
 		print "Nueva Duracion: "+str(maximo)
