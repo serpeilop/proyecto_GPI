@@ -10,13 +10,14 @@ class Fechas:
 	laborables =[]
 	fechaInicio = None
 	duracion = 0
+	domingos = True
 
 	def cambiarFechaInicio(self, dia, mes , ano , proyecto , frameMain):
 		fechaInicio = date(int(ano),int(mes),int(dia))
 		self.fechaInicio = fechaInicio
 		self.fixLaborables()
 		if len(proyecto.getTareas())!=0:
-			Gantt(frameMain,proyecto, 1)
+			Gantt(frameMain,proyecto, 14,1)
 		proyecto.mostrarInformacion(frameMain)
 		
 	def setFechas(self, frameFechas, frameMain , proyecto):
@@ -27,7 +28,7 @@ class Fechas:
 		diaf = StringVar()
 		mesf = StringVar()
 		anof = StringVar()
-		var = IntVar()
+		domingos = IntVar()
 	
 		Label(frameFechas, text="Fecha de Inicio:").grid(row=0, columnspan=7, sticky=W)
 		Label(frameFechas, text="Dia:").grid(row=1)
@@ -46,9 +47,9 @@ class Fechas:
 		Entry(frameFechas,width=5,textvariable=anof).grid(row=3, column=5)
 		Button(frameFechas, text="Anadir", command=lambda: self.addFestivo(diaf.get(),mesf.get(),anof.get(),frameFechas , proyecto , frameMain), width=10).grid(row=3, column=6)
 		
-
-		c = Checkbutton(frameFechas, text="Expand", variable=var)
-		c.grid()
+		domingos.set(1)
+		Checkbutton(frameFechas, text="Domingos son festivos", variable=domingos , command=lambda: self.activarDomingos(frameMain, proyecto)).grid()
+		
 		self.mostrarFechasFestivas(frameFechas)
        	
 	
@@ -58,7 +59,16 @@ class Fechas:
 	
 	def getDuracion(self):
 		return self.duracion
+	
+	def activarDomingos(self, frameMain, proyecto):
 		
+		self.domingos = not self.domingos
+		
+		self.fixLaborables()
+
+		Gantt(frameMain,proyecto,14,1)
+		proyecto.mostrarInformacion(frameMain)
+			
 	def addFestivo(self, dia, mes , ano, ventana_fechas , proyecto , frameMain):
 		fecha = date(int(ano),int(mes),int(dia))
 		self.festivos.append(fecha)
@@ -67,7 +77,7 @@ class Fechas:
 
 		self.fixLaborables()
 
-		Gantt(frameMain,proyecto,1)
+		Gantt(frameMain,proyecto,14,1)
 		proyecto.mostrarInformacion(frameMain)
 	
 	def fixLaborables(self):
@@ -75,21 +85,11 @@ class Fechas:
 		
 		i=0
 		while len(self.laborables)!=self.duracion+1:
-			if self.fechaInicio+timedelta(days=i) not in self.festivos:
+			if self.fechaInicio+timedelta(days=i) not in self.festivos and not(self.domingos and (self.fechaInicio+timedelta(days=i)).weekday()==6):
 				self.laborables.append(self.fechaInicio+timedelta(days=i))
 			i=i+1
 		
 		
-		'''
-		fest = 0
-		for i in range(self.duracion):
-			if self.fechaInicio+timedelta(days=i+fest) in self.festivos:
-				fest = fest+1
-				self.laborables.append(self.fechaInicio+timedelta(days=i+fest))
-			else:
-				self.laborables.append(self.fechaInicio+timedelta(days=i+fest))
-				
-		self.laborables.append(self.fechaInicio+timedelta(days=len(self.laborables)+fest))'''
 	
 	def getLaborables(self):
 		return self.laborables

@@ -5,7 +5,7 @@ from ttk import *
 class Gantt:
 	
 	
-	def __init__(self, frame, proyecto, fila, col):
+	def __init__(self, frame, proyecto, fila=0, col=0):
 
 		tareas = proyecto.getTareas()
 		duracion = proyecto.getDuracion()
