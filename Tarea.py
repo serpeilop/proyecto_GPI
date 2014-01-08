@@ -13,6 +13,7 @@ class Tarea:
         self.recursos = {} # C= Recurso, V=Consumo
         self.isSecuenciada = False
         self.isElegible = False
+        self.valorFIFO = 0
 
     def getNombre(self):
         return self.nombre
@@ -30,6 +31,12 @@ class Tarea:
         self.earlyStart=other
         self.start = other
         self.end = other+self.duracion
+
+    def getValorFIFO(self):
+        return self.valorFIFO
+
+    def incrementaValorFIFO(self):
+        self.valorFIFO = self.valorFIFO +1
     
     def getLateStart(self):
         return self.lateStart
@@ -107,7 +114,9 @@ class Tarea:
 
     #Devuelve fecha de finalizacion mas tardia 
     def getSumaLFT(self):
-        return self.lateStart + self.duracion
+        suma = self.lateStart + self.duracion
+        print "Suma LFT "+str(self.nombre)+": "+str(suma)
+        return suma
 
     #Devuelve fecha de finalizacion mas temprana
     def getFechaFinTemprana(self):

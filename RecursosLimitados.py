@@ -23,8 +23,11 @@ class RecursosLimitados:
 			print
 			print "--- Paso "+str(cont)
 			if(len(self.proyecto.getTareasElegibles())>0):
-				print "Las tareas elegibles son: "+str(self.proyecto.getTareasElegibles())+" Analizamos la primera:"
+				for tarea in self.proyecto.getTareasElegibles():
+					tarea.incrementaValorFIFO()
+				print "Las tareas elegibles son: "+str(self.proyecto.getTareasElegibles())
 				elegible = self.seleccionarTareaElegible()
+				print "Elegimos "+str(elegible.getNombre())
 				instanteSecPrec = self.getInstanteSecuenciacionPrecedentes(elegible)
 				instanteParaSecuenciar = self.dispobibilidadActual.getInstanteMasTemprano(elegible,instanteSecPrec)
 
@@ -52,11 +55,36 @@ class RecursosLimitados:
 				porSecuenciar.append(tarea)
 		return porSecuenciar
 
-	#Devuelve la primera
 	def seleccionarTareaElegible(self):
+		
+		#En el proyecto tenemos las tareas elegibles ordenadas por el criterio LFT. En este metodo, en caso de que tengan igual numero LFT,
+		#aplicamos criterio FIFO para elegir que tarea secuenciar
+		sumasLFT = []
+		valoresFIFO = []
+		tareas = []
+		rangoFIFO = 1
+
+		for tarea in self.proyecto.getTareasElegibles():
+			sumasLFT.append(tarea.getSumaLFT())
+			valoresFIFO.append(tarea.getValorFIFO())
+			tareas.append(tarea)
+
+		for i in range(0,len(valoresFIFO)-1):
+			if sumasLFT[i] == sumasLFT[i+1]:
+				rangoFIFO = i+2
+			else:
+				break
+
+		nuevaFIFO = valoresFIFO[:rangoFIFO]
+		indice = nuevaFIFO.index(max(nuevaFIFO))
+
+		return tareas[indice]
+
+		'''
 		if(len(self.proyecto.getTareasElegibles())>0):
 			return self.proyecto.getTareasElegibles()[0]
 		return None
+		'''
 
 	def getInstanteSecuenciacionPrecedentes(self,tarea):
 		a = 0
