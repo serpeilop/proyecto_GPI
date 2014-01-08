@@ -96,7 +96,7 @@ class Fechas:
 		self.laborables = []
 		
 		i=0
-		while len(self.laborables)!=self.duracion+1:
+		while len(self.laborables)!=self.duracion+100:
 			if self.fechaInicio+timedelta(days=i) not in self.festivos and not(self.domingos and (self.fechaInicio+timedelta(days=i)).weekday()==6) and not(self.sabados and (self.fechaInicio+timedelta(days=i)).weekday()==5):
 				self.laborables.append(self.fechaInicio+timedelta(days=i))
 			i=i+1

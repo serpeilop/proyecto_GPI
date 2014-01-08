@@ -101,7 +101,7 @@ class MejoraProgramacionesFactibles:
 		if inicio > 0:
 			tareaFinal.setEarlyStart(fin-inicio)
 			tareaFinal.setLateStart(fin-inicio)
-			for tarea in proyecto.getTareas():
+			for tarea in self.proyecto.getTareas():
 				tarea.setEarlyStart(tarea.getEarlyStart()-inicio)
 
 		print
