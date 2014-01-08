@@ -116,6 +116,7 @@ class MejoraProgramacionesFactibles:
 				maximo = tarea.getEarlyStart() + tarea.getDuracion()
 		tareaFinal.setEarlyStart(maximo)
 		tareaFinal.setLateStart(maximo)
+		self.proyecto.setDuracion(maximo)
 		print
 		print "Mejora PF (A) - Nueva Duracion: "+str(maximo)
 
