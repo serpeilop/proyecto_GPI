@@ -84,8 +84,6 @@ Gantt(frameMain,proyecto,14,1)
 
 
 
-
-
 Label(frameMain, text="Nombre: ").grid(row=1)
 nom = StringVar()
 Entry(frameMain, textvariable=nom).grid(row=2)

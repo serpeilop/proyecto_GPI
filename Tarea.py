@@ -4,8 +4,6 @@ class Tarea:
         self.duracion=duracion
         self.antecesoras = []
         self.sucesoras = []
-        self.start = 0
-        self.end = 0
         self.earlyStart=0
         self.lateStart=999999999
         self.holgura=-1
