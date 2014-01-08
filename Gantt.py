@@ -13,8 +13,8 @@ class Gantt:
 		n = len(tareas)
 		
 		#TAMANYO
-		altura=20
-		ancho=40
+		altura=15
+		ancho=30
 
 		w = Canvas(frame, width=80+ancho*duracion, height=80+altura*n)
 		w.grid(column=col, row=fila,columnspan=colspan, rowspan=rowspan , sticky=W)
