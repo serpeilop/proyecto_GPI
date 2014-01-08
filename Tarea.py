@@ -4,6 +4,8 @@ class Tarea:
         self.duracion=duracion
         self.antecesoras = []
         self.sucesoras = []
+	self.earlyEnd = 0
+	self.lateEnd = 0
         self.earlyStart=0
         self.lateStart=999999999
         self.holgura=-1
@@ -27,8 +29,7 @@ class Tarea:
 
     def setEarlyStart(self,other):
         self.earlyStart=other
-        self.start = other
-        self.end = other+self.duracion
+        self.earlyEnd = other+self.duracion
 
     def getValorFIFO(self):
         return self.valorFIFO
@@ -39,11 +40,11 @@ class Tarea:
     def getLateStart(self):
         return self.lateStart
 
-    def getStart(self):
-	   return self.start
-    
-    def getEnd(self):
-	   return self.end
+    def getEarlyEnd(self):
+	   return self.earlyEnd
+	   
+    def getLateEnd(self):
+	   return self.LateEnd
   
     def setStart(self, other):
 	   self.start = other
@@ -53,6 +54,7 @@ class Tarea:
 
     def setLateStart(self,other):
         self.lateStart=other
+	self.lateEnd = other+self.duracion
 
     def getSucesoras(self):
         return self.sucesoras
