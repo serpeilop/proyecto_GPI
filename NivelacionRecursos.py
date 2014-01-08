@@ -52,13 +52,20 @@ class NivelacionRecursos:
 		for i in tareasOrdenadas:
 			carga = 9999999
 			suma = 0
+			early = i.getEarlyStart()
 			for j in range(i.getHolgura()+1):
 				i.setEarlyStart(i.getEarlyStart()+j)
 				if self.calcularCarga(copia, proyecto.getRecursos()[0])<carga:
 					carga = self.calcularCarga(copia, proyecto.getRecursos()[0])
-					suma = j
-			i.setEarlyStart(i.getEarlyStart()+suma)
-		
+					suma = j			
+			i.setEarlyStart(early+suma)
+			
+		print self.calcularCarga(proyecto.getTareas(),proyecto.getRecursos()[0])
+		print self.calcularCarga(copia,proyecto.getRecursos()[0])
+
+		print self.calcularCarga(proyecto.getTareas(),proyecto.getRecursos()[1])
+		print self.calcularCarga(copia,proyecto.getRecursos()[1])
+					
 		auxiliar = proyecto.getTareas()	
 		proyecto.setTareas(copia)
 		Histograma(frame, proyecto,21,1)
