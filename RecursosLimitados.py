@@ -15,8 +15,6 @@ class RecursosLimitados:
 			self.proyecto.getTareasElegibles().append(sucesora)
 		self.proyecto.setTareasElegibles(self.ordenarTareasLFT(self.proyecto.getTareasElegibles()))
 		
-		#self.proyecto.setTareasElegibles(self.ordenarTareasLFT(self.proyecto.getTareaInicio().getSucesoras()))
-
 		cont = 0
 		while(len(self.getTareasPorSecuenciar())>0):
 			cont = cont +1
@@ -28,11 +26,10 @@ class RecursosLimitados:
 				print "Las tareas elegibles son: "+str(self.proyecto.getTareasElegibles())
 				elegible = self.seleccionarTareaElegible()
 				print "Elegimos "+str(elegible.getNombre())
-				instanteSecPrec = self.getInstanteSecuenciacionPrecedentes(elegible)
+				instanteSecPrec = self.getInstanteSecuenciacion(elegible)
 				instanteParaSecuenciar = self.dispobibilidadActual.getInstanteMasTemprano(elegible,instanteSecPrec)
 
 				elegible.setEarlyStart(instanteParaSecuenciar)
-				#elegible.setLateStart(None)
 
 				self.proyecto.getTareasSecuenciadas().append(elegible)
 				elegible.setIsSecuenciada(True)
@@ -44,8 +41,7 @@ class RecursosLimitados:
 						tarea.setIsElegible(True)
 						self.proyecto.getTareasElegibles().append(tarea)
 						aux = self.proyecto.getTareasElegibles()
-						self.proyecto.setTareasElegibles(self.ordenarTareasLFT(aux))
-			#self.proyecto.setTareasElegibles(self.ordenarTareasLFT(self.proyecto.getTareasElegibles()))	
+						self.proyecto.setTareasElegibles(self.ordenarTareasLFT(aux))	
 		self.calcularNuevoFinProyecto()					
 
 	def getTareasPorSecuenciar(self):
@@ -56,8 +52,7 @@ class RecursosLimitados:
 		return porSecuenciar
 
 	def seleccionarTareaElegible(self):
-		
-		#En el proyecto tenemos las tareas elegibles ordenadas por el criterio LFT. En este metodo, en caso de que tengan igual numero LFT,
+		#En Proyecto tenemos las tareas elegibles ordenadas por el criterio LFT. En este metodo, en caso de que tengan igual numero LFT,
 		#aplicamos criterio FIFO para elegir que tarea secuenciar
 		sumasLFT = []
 		valoresFIFO = []
@@ -80,13 +75,8 @@ class RecursosLimitados:
 
 		return tareas[indice]
 
-		'''
-		if(len(self.proyecto.getTareasElegibles())>0):
-			return self.proyecto.getTareasElegibles()[0]
-		return None
-		'''
-
-	def getInstanteSecuenciacionPrecedentes(self,tarea):
+	#Devuelve el instante a partir del que la tarea podria ser secuenciada (sin tener en cuenta los recursos)
+	def getInstanteSecuenciacion(self,tarea):
 		a = 0
 		for t in tarea.getAntecesoras():
 			if (a < (t.getEarlyStart()+t.getDuracion())):

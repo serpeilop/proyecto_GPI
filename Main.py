@@ -30,7 +30,7 @@ notebook.add(frameRecursos, text='Recursos')
 
 proyecto = Proyecto()
 
-#----------------------------- Pruebas nuevas!
+#----------------------- EJEMPLOS -------------------------
 
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
@@ -60,6 +60,8 @@ def meterTarea(nombre, duracion, antecesoras, recursos):
 				aux.addRecurso(j,recursos[i])
 
 
+# -- Ejemplo con 11 Tareas
+'''
 crearRecurso("R1",6)
 crearRecurso("R2",5)
 
@@ -74,13 +76,58 @@ meterTarea("H",3,"F,G",{"R1":2,"R2":2})
 meterTarea("I",3,"C",{"R1":3,"R2":2})
 meterTarea("J",2,"E,I",{"R1":4,"R2":1})
 meterTarea("K",3,"J",{"R1":5,"R2":4})
+'''
+#-- Ejemplo con 30 Tareas
 
+crearRecurso("R1",7)
+crearRecurso("R2",6)
+
+meterTarea("A",5,"",{"R1":3,"R2":2})
+meterTarea("B",5,"",{"R1":2,"R2":4})
+meterTarea("C",4,"A",{"R1":3,"R2":1})
+meterTarea("D",2,"A",{"R1":4,"R2":3})
+meterTarea("E",3,"D",{"R1":2})
+meterTarea("F",3,"D,",{"R1":1,"R2":1})
+meterTarea("G",4,"B",{"R1":3,"R2":1})
+meterTarea("H",3,"F,G",{"R1":2,"R2":2})
+meterTarea("I",3,"C",{"R1":3,"R2":2})
+meterTarea("J",2,"E,I",{"R1":4,"R2":1})
+meterTarea("K",3,"J",{"R1":5,"R2":4})
+meterTarea("L",5,"K",{"R1":3,"R2":2})
+meterTarea("M",5,"K",{"R1":2,"R2":4})
+meterTarea("N",4,"L",{"R1":3,"R2":1})
+meterTarea("O",2,"L",{"R1":4,"R2":3})
+meterTarea("P",3,"O",{"R1":2})
+meterTarea("Q",3,"O",{"R1":1,"R2":1})
+meterTarea("R",4,"M",{"R1":3,"R2":1})
+meterTarea("S",3,"Q,R",{"R1":2,"R2":2})
+meterTarea("T",3,"N",{"R1":3,"R2":2})
+meterTarea("U",2,"P,T",{"R1":4,"R2":1})
+meterTarea("V",3,"U",{"R1":5,"R2":4})
+meterTarea("W",5,"V",{"R1":3,"R2":2})
+meterTarea("X",5,"V",{"R1":2,"R2":4})
+meterTarea("Y",4,"W",{"R1":3,"R2":1})
+meterTarea("Z",2,"W",{"R1":4,"R2":3})
+meterTarea("EE",3,"Z",{"R1":2})
+meterTarea("FF",3,"Z,",{"R1":1,"R2":1})
+meterTarea("GG",4,"X",{"R1":3,"R2":1})
+meterTarea("HH",3,"FF,GG",{"R1":2,"R2":2})
+meterTarea("II",3,"Y",{"R1":3,"R2":2})
+meterTarea("JJ",2,"EE,II",{"R1":4,"R2":1})
+meterTarea("KK",3,"JJ",{"R1":5,"R2":4})
+
+
+#-----
 caminoCritico = CaminoCritico(proyecto)
 caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
-Gantt(frameMain,proyecto,14,1)
-#------------------------------------	 
+
+frameGantt = Tk()
+frameGantt.wm_title("Gestion de Proyectos: Gantt del Proyecto")
+Gantt(frameGantt,proyecto,14,1)
+
+#---------------------- FIN EJEMPLOS ------------------	 
 
 
 
