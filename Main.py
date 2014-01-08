@@ -31,7 +31,7 @@ notebook.add(frameRecursos, text='Recursos')
 proyecto = Proyecto()
 
 #----------------------------- Pruebas nuevas!
-
+'''
 proyecto.fechasProyecto.cambiarFechaInicio(2,2,1988,proyecto, frameMain)
 
 def crearRecurso(nombre, cantidad):
@@ -80,6 +80,7 @@ caminoCritico.calculoCaminoCritico()
 
 proyecto.fixLaborables()
 Gantt(frameMain,proyecto,14,1)
+'''
 #------------------------------------	 
 
 
