@@ -53,13 +53,11 @@ class NivelacionRecursos:
 			carga = 9999999
 			suma = 0
 			for j in range(i.getHolgura()+1):
-				i.setStart(i.getStart()+j)
-				i.setEnd(i.getEnd()+j)
+				i.setEarlyStart(i.getEarlyStart()+j)
 				if self.calcularCarga(copia, proyecto.getRecursos()[0])<carga:
 					carga = self.calcularCarga(copia, proyecto.getRecursos()[0])
 					suma = j
-			i.setStart(i.getStart()+suma)
-			i.setEnd(i.getEnd()+suma)
+			i.setEarlyStart(i.getEarlyStart()+suma)
 		
 		auxiliar = proyecto.getTareas()	
 		proyecto.setTareas(copia)
@@ -75,7 +73,7 @@ class NivelacionRecursos:
 		for dia in range(self.proyecto.getTareaFinal().getEarlyStart()):
 			aux=0
 			for tarea in tareas:
-				if dia>=tarea.getStart() and dia<tarea.getEnd() and rec in tarea.getRecursos():
+				if dia>=tarea.getEarlyStart() and dia<tarea.getEarlyEnd() and rec in tarea.getRecursos():
 					aux = aux + tarea.getRecursos()[rec]
 			carga = aux * aux
 			cargatotal = cargatotal + carga

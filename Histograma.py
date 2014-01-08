@@ -15,7 +15,7 @@ class Histograma:
 			for dia in range(duracion):	
 				aux=0
 				for tarea in proyecto.getTareas():
-					if dia>=tarea.getStart() and dia<tarea.getEnd() and rec in tarea.getRecursos():
+					if dia>=tarea.getEarlyStart() and dia<tarea.getEarlyEnd() and rec in tarea.getRecursos():
 						aux = aux + tarea.getRecursos()[rec]
 
 				cargas.append(aux)
