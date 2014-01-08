@@ -10,18 +10,19 @@ class NivelacionRecursos:
 		self.frame = Tk()
 		self.frame.wm_title("Gestion de Proyectos")
 		self.frame.resizable(0,0)
+		self.por = StringVar()
 		
 		Label(self.frame, text="Porcentaje de aceptacion: ").grid()
-		por = StringVar()
-		Entry(self.frame, textvariable=por).grid()
-		Button(self.frame, text="Introducir", command=lambda: self.cambiarPorcentaje(por.get()), width=17).grid()
+		
+		Entry(self.frame, textvariable=self.por).grid()
+		Button(self.frame, text="Introducir", command=lambda: self.cambiarPorcentaje(self.por.get()), width=17).grid()
 		Button(self.frame, text="Calcular", command=lambda: self.calcularNivelacion(), width=17).grid()
 		Histograma(self.frame, proyecto,21,1)
 		Gantt(self.frame, proyecto,0,1,10)
 		
 	
 	def cambiarPorcentaje(self, porcentaje):
-		print "hola"
+		print porcentaje
 		
 	def calcularNivelacion(self):
 		print "Hola"
