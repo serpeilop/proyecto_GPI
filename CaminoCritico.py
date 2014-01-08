@@ -1,7 +1,6 @@
 from Tkinter import *
 
 class CaminoCritico:
-	#En esta clase se define la cantidad de recurso que hay disponible en el proyecto
 	def __init__(self, proyecto):
 		self.proyecto = proyecto
 

@@ -44,23 +44,25 @@ class NivelacionRecursos:
 		copia = deepcopy(proyecto.getTareas())
 		tareasOrdenadas = []
 		n = 1
+		print copia
 		for i in copia:
 			if i.getHolgura()==0:
 				n=n+1
+		print n
 		while len(tareasOrdenadas)<n:
 			end= 0
 			for i , j in enumerate (copia):
 				if j.getEarlyStart()+j.getDuracion()>=end and j.getHolgura()!=0 and j not in tareasOrdenadas:
 					end= j.getEarlyStart()+j.getDuracion()
 					tar = i
-
 			tareasOrdenadas.append(copia[tar])
 		
+		print tareasOrdenadas
 		for i in tareasOrdenadas:
 			carga = 9999999
 			suma = 0
 			early = i.getEarlyStart()
-			for j in range(i.getHolgura()-2):
+			for j in range(i.getHolgura()):
 				anterior = deepcopy(copia)
 				i.setEarlyStart(i.getEarlyStart()+j)
 				#mejora = True
@@ -72,7 +74,7 @@ class NivelacionRecursos:
 				if self.calcularCarga(copia, proyecto.getRecursos()[0])<=carga:
 					carga = self.calcularCarga(copia, proyecto.getRecursos()[0])
 					suma = j
-				print carga			
+				print j			
 			i.setEarlyStart(early+suma)
 		
 		print "Carga actual:"	
